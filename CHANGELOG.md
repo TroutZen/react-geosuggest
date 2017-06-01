@@ -1,3 +1,17 @@
+## 2.3.0 (2017-06-01)
+
+
+#### Bug Fixes
+
+* Do not use setState to save timer instance. ([3709fdb6](https://github.com/ubilabs/react-geosuggest/commit/3709fdb6f8d7d8e7133c153398be87268b445a7a))
+
+
+#### Features
+
+* add blur() ([d16c6105](https://github.com/ubilabs/react-geosuggest/commit/d16c6105557bcca8dabc160927a448d86f06ffbe))
+* **SuggestItem:** Add renderSuggestItem prop for custom suggest item templates ([2e72168f](https://github.com/ubilabs/react-geosuggest/commit/2e72168f339238b970435092f47fef8752cc479c))
+
+
 ## 2.1.0 (2017-01-11)
 
 

@@ -1042,7 +1042,8 @@ var Geosuggest = function (_React$Component) {
         onSuggestNoResults: this.onSuggestNoResults,
         onSuggestMouseDown: this.onSuggestMouseDown,
         onSuggestMouseOut: this.onSuggestMouseOut,
-        onSuggestSelect: this.selectSuggest });
+        onSuggestSelect: this.selectSuggest,
+        renderSuggestItem: this.props.renderSuggestItem });
 
       return _react2.default.createElement(
         'div',
@@ -1120,6 +1121,7 @@ exports.default = {
   getSuggestLabel: function getSuggestLabel(suggest) {
     return suggest.description;
   },
+  renderSuggestItem: null,
   autoActivateFirstSuggest: false,
   style: {
     'input': {},
@@ -1406,6 +1408,7 @@ exports.default = {
   onKeyPress: _react2.default.PropTypes.func,
   skipSuggest: _react2.default.PropTypes.func,
   getSuggestLabel: _react2.default.PropTypes.func,
+  renderSuggestItem: _react2.default.PropTypes.func,
   autoActivateFirstSuggest: _react2.default.PropTypes.bool,
   style: _react2.default.PropTypes.shape({
     input: _react2.default.PropTypes.object,
@@ -1508,7 +1511,7 @@ var SuggestItem = function (_React$Component) {
           onMouseDown: this.props.onMouseDown,
           onMouseOut: this.props.onMouseOut,
           onClick: this.onClick },
-        this.props.suggest.label
+        this.props.renderSuggestItem ? this.props.renderSuggestItem(this.props.suggest) : this.props.suggest.label
       );
     }
   }]);
@@ -1634,9 +1637,10 @@ var SuggestList = function (_React$Component) {
         'ul',
         { className: classes, style: this.props.style },
         this.props.suggests.map(function (suggest) {
-          var isActive = _this2.props.activeSuggest && suggest.placeId === _this2.props.activeSuggest.placeId;
+          var isActive = _this2.props.activeSuggest && suggest.placeId === _this2.props.activeSuggest.placeId,
+              key = suggest.key || suggest.placeId;
 
-          return _react2.default.createElement(_suggestItem2.default, { key: suggest.placeId,
+          return _react2.default.createElement(_suggestItem2.default, { key: key,
             className: suggest.className,
             suggest: suggest,
             style: _this2.props.suggestItemStyle,
@@ -1645,7 +1649,8 @@ var SuggestList = function (_React$Component) {
             activeClassname: _this2.props.suggestItemActiveClassName,
             onMouseDown: _this2.props.onSuggestMouseDown,
             onMouseOut: _this2.props.onSuggestMouseOut,
-            onSelect: _this2.props.onSuggestSelect });
+            onSelect: _this2.props.onSuggestSelect,
+            renderSuggestItem: _this2.props.renderSuggestItem });
         })
       );
     }
